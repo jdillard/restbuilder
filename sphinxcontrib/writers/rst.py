@@ -857,6 +857,15 @@ class RstTranslator(nodes.NodeVisitor):
     def visit_docinfo(self, node):
         raise nodes.SkipNode
 
+    def visit_start_of_file(self, node):
+        # Emit anchor target for document boundary (used by singlerst builder)
+        self.new_state(0)
+        self.add_text('.. _document-%s:' % node['docname'])
+        self.end_state(wrap=False)
+
+    def depart_start_of_file(self, node):
+        pass
+
     def unknown_visit(self, node):
         self.log_unknown(node.__class__.__name__, node)
         

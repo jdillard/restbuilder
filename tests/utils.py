@@ -35,6 +35,30 @@ except ImportError:
             roles._roles = _roles
 
 
+def build_singlerst(src_dir, output_dir, config={}):
+    """Build using the singlerst builder instead of rst."""
+    doctrees_dir = join(output_dir, '.doctrees')
+
+    default_config = {
+        'extensions': ['sphinxcontrib.restbuilder'],
+        'master_doc': 'index',
+    }
+    default_config.update(config)
+    config = default_config
+
+    with docutils_namespace():
+        app = Sphinx(
+            src_dir,
+            None,
+            output_dir,
+            doctrees_dir,
+            'singlerst',
+            confoverrides=config,
+            verbosity=0,
+        )
+        app.build(force_all=True)
+
+
 def build_sphinx(src_dir, output_dir, files=None, config={}):
     doctrees_dir = join(output_dir, '.doctrees')
 

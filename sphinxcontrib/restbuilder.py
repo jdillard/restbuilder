@@ -21,9 +21,11 @@ def setup(app):
     # even if Sphinx is not yet installed.
     from sphinx.writers.text import STDINDENT
     from .builders.rst import RstBuilder  # loads RstWriter as well.
+    from .builders.singlerst import SingleRstBuilder
 
     app.require_sphinx('1.4')
     app.add_builder(RstBuilder)
+    app.add_builder(SingleRstBuilder)
     app.add_config_value('rst_file_suffix', ".rst", False)
     """This is the file name suffix for reST files"""
     app.add_config_value('rst_link_suffix', None, False)
