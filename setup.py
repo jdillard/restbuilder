@@ -4,20 +4,12 @@ from setuptools import setup, find_packages
 
 def get_restbuilder_version():
     # load sphinxcontrib.restbuilder from local path.
-    # (Lots of work, just to get the version info)
     from os.path import join, dirname
-    import sys
+    import importlib.util
     restbuilder_path = join(dirname(__file__), 'sphinxcontrib', 'restbuilder.py')
-    if sys.version_info >= (3, 5):
-        # requires Python 3.5 or up.
-        import importlib.util
-        spec = importlib.util.spec_from_file_location('sphinxcontrib.restbuilder', restbuilder_path)
-        restbuilder = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(restbuilder)
-    else:
-        # Python 2.7 support
-        import imp
-        restbuilder = imp.load_source('sphinxcontrib.restbuilder', restbuilder_path)
+    spec = importlib.util.spec_from_file_location('sphinxcontrib.restbuilder', restbuilder_path)
+    restbuilder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(restbuilder)
     return restbuilder.__version__
 
 long_desc = '''
