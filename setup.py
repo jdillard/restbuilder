@@ -26,7 +26,7 @@ reStructuredText file from Sphinx_ and outputs it as reStructuredText.
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
 '''
 
-requires = ['Sphinx>=1.4', 'docutils']
+requires = ['Sphinx>=5.0', 'docutils']
 
 setup(
     name='sphinxcontrib-restbuilder',
@@ -56,7 +56,7 @@ setup(
         'Topic :: Text Processing :: Markup :: reStructuredText',
     ],
     platforms='any',
-    python_requires='>=2.7, !=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*',
+    python_requires='>=3.10',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,
     install_requires=requires,
